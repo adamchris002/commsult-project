@@ -24,8 +24,8 @@ class Register extends React.Component {
         names: [...this.state.names, this.state.name],
         emails: [...this.state.emails, this.state.email],
         usernames: [...this.state.usernames, this.state.username],
-        paswords: [...this.state.passwords, this.state.password],
-
+        passwords: [...this.state.passwords, this.state.password],
+        
       });
   }
 
@@ -89,7 +89,7 @@ class Register extends React.Component {
                 <label className="label-box">Password: </label>
                 <input className="form-control input-register" onChange={(event) =>
                     this.setState({ password: event.target.value })
-                  }></input>
+                  } type="password"></input>
               </div>
               <div>
                 <a href="">Already have an account? click here to login</a>
@@ -97,6 +97,10 @@ class Register extends React.Component {
                 <button className="btn btn-primary button-register" onClick={this.createUser} >
                   Register
                 </button>
+                <p>{this.state.names}</p>
+                <p>{this.state.emails}</p>
+                <p>{this.state.usernames}</p>
+                <p>{this.state.passwords}</p>
               </div>
             </div>
           </div>
