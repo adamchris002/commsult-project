@@ -12,22 +12,18 @@ class Register extends React.Component {
       email: "",
       username: "",
       password: "",
-      names: [], 
-      emails: [],
-      usernames: [],
-      passwords: []
     };
   }
 
   createUser = () => {
-    this.setState({
-        names: [...this.state.names, this.state.name],
-        emails: [...this.state.emails, this.state.email],
-        usernames: [...this.state.usernames, this.state.username],
-        passwords: [...this.state.passwords, this.state.password],
-        
-      });
-  }
+    this.props.addUser({
+      name: this.state.name,
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password,
+    });
+    this.props.changePage("login");
+  };
 
   render() {
     return (
@@ -63,9 +59,12 @@ class Register extends React.Component {
                 }}
               >
                 <label className="label-box">E-mail: </label>
-                <input className="form-control input-register" onChange={(event) =>
+                <input
+                  className="form-control input-register"
+                  onChange={(event) =>
                     this.setState({ email: event.target.value })
-                  }></input>
+                  }
+                ></input>
               </div>
               <div
                 className="mini-box"
@@ -75,9 +74,12 @@ class Register extends React.Component {
                 }}
               >
                 <label className="label-box">Username: </label>
-                <input className="form-control input-register" onChange={(event) =>
+                <input
+                  className="form-control input-register"
+                  onChange={(event) =>
                     this.setState({ username: event.target.value })
-                  }></input>
+                  }
+                ></input>
               </div>
               <div
                 className="mini-box"
@@ -87,20 +89,23 @@ class Register extends React.Component {
                 }}
               >
                 <label className="label-box">Password: </label>
-                <input className="form-control input-register" onChange={(event) =>
+                <input
+                  className="form-control input-register"
+                  onChange={(event) =>
                     this.setState({ password: event.target.value })
-                  } type="password"></input>
+                  }
+                  type="password"
+                ></input>
               </div>
               <div>
                 <a href="">Already have an account? click here to login</a>
                 <br />
-                <button className="btn btn-primary button-register" onClick={this.createUser} >
+                <button
+                  className="btn btn-primary button-register"
+                  onClick={this.createUser}
+                >
                   Register
                 </button>
-                <p>{this.state.names}</p>
-                <p>{this.state.emails}</p>
-                <p>{this.state.usernames}</p>
-                <p>{this.state.passwords}</p>
               </div>
             </div>
           </div>

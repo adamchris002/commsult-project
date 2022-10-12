@@ -1,11 +1,33 @@
-import React, {useState} from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
 import "../App.css";
+import Home from "./home";
 
 class Login extends React.Component {
-  onLogin = () => {
-    this.props.changePage("home");
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      page: "login",
+      username: "",
+      password: "",
+      errorMessage: "",
+    };
+  }
+
+  goToRegister = () => {
+    this.props.changePage("register");
+  };
+
+  login = () => {
+      this.props.users.forEach((user) => {
+        if (user.username === this.state.username && user.password === this.state.password) {
+            this.props.changePage("home")
+        } else {
+            this.setState({errorMessage: "the username and password is incorrect"})
+        }
+      });
   };
 
   render() {
@@ -26,8 +48,8 @@ class Login extends React.Component {
                   alignItems: "center",
                 }}
               >
-                <label className="label-username">Username: </label>
-                <input className="form-control input-login"></input>
+                <label className="label-box">Username: </label>
+                <input className="form-control input-login" onChange={(event) => this.setState({username: event.target.value})}></input>
               </div>
               <div
                 className="mini-box"
@@ -36,21 +58,26 @@ class Login extends React.Component {
                   alignItems: "center",
                 }}
               >
-                <label className="label-password">Password: </label>
-                <input className="form-control input-login"></input>
+                <label className="label-box">Password: </label>
+                <input className="form-control input-login" type="password" onChange={(event) => this.setState({ password: event.target.value })}></input>
               </div>
               <div>
-                <a 
-                    href="/" 
-                    onClick={e => {
-                        e.preventDefault()
-                        this.onLogin()
-                    }} 
+                <a
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    this.goToRegister();
+                  }}
                 >
-                    Don't have an account yet? register here
+                  Don't have an account yet? register here
                 </a>
                 <br />
-                <button className="btn btn-primary button-login">Login</button>
+                <button
+                  className="btn btn-primary button-login"
+                  onClick={this.login}
+                >
+                  Login
+                </button>
               </div>
             </div>
           </div>
