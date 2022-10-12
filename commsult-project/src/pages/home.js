@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
 import "../App.css";
@@ -31,7 +31,7 @@ class Home extends React.Component {
           <div className="search-bar">
             <form className="d-flex" role="search">
               <input
-                className="form-control me-2"
+                className="form-control me-2 ini-bar"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"

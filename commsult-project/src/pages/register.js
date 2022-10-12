@@ -12,17 +12,26 @@ class Register extends React.Component {
       email: "",
       username: "",
       password: "",
+      errorMessage: "",
     };
   }
 
   createUser = () => {
-    this.props.addUser({
-      name: this.state.name,
-      email: this.state.email,
-      username: this.state.username,
-      password: this.state.password,
-    });
-    this.props.changePage("login");
+    if (this.state.name === "" || this.state.email === "" || this.state.username === "" || this.state.password === "") {
+        this.setState({errorMessage: "please complete all data"})
+        return
+    }
+    else {
+        this.props.addUser({
+            name: this.state.name,
+            email: this.state.email,
+            username: this.state.username,
+            password: this.state.password,
+          });
+          this.props.changePage("login");
+    }
+    
+    
   };
 
   render() {

@@ -2,7 +2,6 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
 import "../App.css";
-import Home from "./home";
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,6 +12,7 @@ class Login extends React.Component {
       username: "",
       password: "",
       errorMessage: "",
+      showUserError: false,
     };
   }
 
@@ -21,13 +21,20 @@ class Login extends React.Component {
   };
 
   login = () => {
-      this.props.users.forEach((user) => {
-        if (user.username === this.state.username && user.password === this.state.password) {
-            this.props.changePage("home")
-        } else {
-            this.setState({errorMessage: "the username and password is incorrect"})
-        }
-      });
+    this.props.users.forEach((user) => {
+      if (
+        user.username === this.state.username &&
+        user.password === this.state.password
+      ) {
+        this.props.changePage("home");
+      } else {
+        this.setState({
+          errorMessage: "the username and password is incorrect",
+          showUserError: this.state.username == "",
+          showUserError: this.state.password == "",
+        });
+      }
+    });
   };
 
   render() {
@@ -41,6 +48,14 @@ class Login extends React.Component {
             <div className="box ">
               <img src={"/logo.png"} alt="logo" className="logo-web" />
               <h1 className="judul-login-form">Login Form</h1>
+              {
+                this.state.showUserError ? <div
+                class="alert alert-danger d-flex align-items-center"
+                role="alert"
+              >
+                <div>{this.state.errorMessage}</div>
+              </div> : ""
+              }
               <div
                 className="mini-box"
                 style={{
@@ -49,8 +64,21 @@ class Login extends React.Component {
                 }}
               >
                 <label className="label-box">Username: </label>
-                <input className="form-control input-login" onChange={(event) => this.setState({username: event.target.value})}></input>
+                <input
+                  className="form-control input-login"
+                  onChange={(event) =>
+                    this.setState({ username: event.target.value })
+                  }
+                ></input>
               </div>
+              {
+                this.state.showUserError ? <div
+                class="alert alert-danger d-flex align-items-center"
+                role="alert"
+              >
+                <div>{this.state.errorMessage}</div>
+              </div> : ""
+              }
               <div
                 className="mini-box"
                 style={{
@@ -59,7 +87,13 @@ class Login extends React.Component {
                 }}
               >
                 <label className="label-box">Password: </label>
-                <input className="form-control input-login" type="password" onChange={(event) => this.setState({ password: event.target.value })}></input>
+                <input
+                  className="form-control input-login"
+                  type="password"
+                  onChange={(event) =>
+                    this.setState({ password: event.target.value })
+                  }
+                ></input>
               </div>
               <div>
                 <a
