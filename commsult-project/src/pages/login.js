@@ -22,10 +22,6 @@ class Login extends React.Component {
     this.props.changePage("register");
   };
 
-  giveCurrentUser = () => {
-    
-  }
-
   login = () => {
     this.props.users.forEach((user) => {
       if (
