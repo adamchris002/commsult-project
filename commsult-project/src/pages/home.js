@@ -12,6 +12,7 @@ class Home extends React.Component {
       page: "home",
       items: [],
       search: "",
+      cart: [],
     };
   }
 
@@ -28,12 +29,10 @@ class Home extends React.Component {
     });
   }
 
-  handleSearch = () => {
-    const result = this.state.items.filter(element => {
-      
-    })
-    this.setState({items: result})
-  }
+    addToCart = item => (e) => {
+      e.preventDefault(e);
+      this.props.addCart(item)
+    }
 
   render() {
     return (
@@ -45,8 +44,18 @@ class Home extends React.Component {
               alt="ini logo dari website"
               className="logo-home"
             />
-            <a className="navbar-brand ms-3 tombol-menu" href="#">
+            <a className="navbar-brand ms-3 tombol-menu" href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    this.props.changePage("home");
+                  }}>
               Home
+            </a>
+            <a className="navbar-brand ms-3 tombol-menu" href="/" onClick={(e) => {
+                    e.preventDefault();
+                    this.props.changePage("cart");
+                  }}>
+              Cart
             </a>
           </div>
           <div className="search-bar">
@@ -181,7 +190,7 @@ class Home extends React.Component {
                             {element.detail}
                           </p>
                           <span className="ini-span">
-                            <a href="#" className="btn btn-primary">
+                            <a href="/" className="btn btn-primary add-cart"onClick={this.addToCart(element)}>
                               Add to Cart
                             </a>
                             <p className="harga">Rp. {element.price}</p>
