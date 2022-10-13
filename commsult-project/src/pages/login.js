@@ -30,8 +30,7 @@ class Login extends React.Component {
       } else {
         this.setState({
           errorMessage: "the username and password is incorrect",
-          showUserError: this.state.username == "",
-          showUserError: this.state.password == "",
+          showUserError: this.state.username === "",
         });
       }
     });
@@ -51,7 +50,7 @@ class Login extends React.Component {
               {
                 this.state.showUserError ? <div
                 class="alert alert-danger d-flex align-items-center"
-                role="alert"
+                role="alert" 
               >
                 <div>{this.state.errorMessage}</div>
               </div> : ""
