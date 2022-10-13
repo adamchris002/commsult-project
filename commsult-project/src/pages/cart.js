@@ -5,9 +5,22 @@ import "../App.css";
 import axios from "axios";
 
 class Cart extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            newCart: [],
+        }
+    }
   backToHome = () => {
     this.props.changePage("home");
   };
+
+  removeCart = item => (e) => {
+    e.preventDefault(e);
+    this.props.removeCart(item);
+  }
+
 
   render() {
     return (
@@ -39,7 +52,7 @@ class Cart extends React.Component {
                     margin: 5,
                   }}>
                     <span className="span-cart">
-                    <button className="btn btn-danger">Remove</button>
+                    <button className="btn btn-danger" onClick={this.removeCart(item)}>Remove</button>
                     <p className="harga-cart">Rp. {item.price}</p>
                     </span>
                   </div>

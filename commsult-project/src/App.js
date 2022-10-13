@@ -15,16 +15,33 @@ class App extends React.Component {
       page: "login",
       users: [],
       carts: [],
+      currentUser: "",
     };
   }
 
+  getCurrentUser = (user) => {
+    this.setState({ currentUser: user });
+  };
+
   addUser = (user) => {
-    this.setState({ users: this.state.users.concat(user)});
+    this.setState({ users: this.state.users.concat(user) });
   };
 
   addCart = (items) => {
-    this.setState({ carts: this.state.carts.concat(items)});
-  }
+    this.setState({ carts: this.state.carts.concat(items) });
+  };
+
+  removeCart = (item) => {
+    this.setState({
+      carts: this.state.carts.filter((element) => {
+        if (element.id === item.id) {
+          return false;
+        } else {
+          return true;
+        }
+      }),
+    });
+  };
 
   changePage = (newPage) => {
     this.setState({ page: newPage });
@@ -35,11 +52,24 @@ class App extends React.Component {
       <>
         <div className="App">
           {this.state.page === "login" ? (
-            <Login changePage={this.changePage} users={this.state.users}/>
+            <Login
+              changePage={this.changePage}
+              users={this.state.users}
+              getCurrentUser={this.getCurrentUser}
+            />
           ) : this.state.page === "home" ? (
-            <Home changePage={this.changePage} users={this.state.users} addCart={this.addCart}/>
+            <Home
+              changePage={this.changePage}
+              users={this.state.users}
+              addCart={this.addCart}
+              currentUser={this.state.currentUser}
+            />
           ) : this.state.page === "cart" ? (
-            <Cart changePage={this.changePage} carts={this.state.carts}/>
+            <Cart
+              changePage={this.changePage}
+              carts={this.state.carts}
+              removeCart={this.removeCart}
+            />
           ) : (
             <Register changePage={this.changePage} addUser={this.addUser} />
           )}

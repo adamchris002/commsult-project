@@ -13,6 +13,8 @@ class Login extends React.Component {
       password: "",
       errorMessage: "",
       showUserError: false,
+      showPasswordError: false,
+      currentUser: "",
     };
   }
 
@@ -20,19 +22,24 @@ class Login extends React.Component {
     this.props.changePage("register");
   };
 
+  giveCurrentUser = () => {
+    
+  }
+
   login = () => {
     this.props.users.forEach((user) => {
       if (
         user.username === this.state.username &&
         user.password === this.state.password
       ) {
+        this.props.getCurrentUser(user);
         this.props.changePage("home");
-      } else {
-        this.setState({
-          errorMessage: "the username and password is incorrect",
-          showUserError: this.state.username === "",
-        });
       }
+    });
+    this.setState({
+      errorMessage: "the username and password is incorrect",
+      showUserError: this.state.username === "",
+      showPasswordError: this.state.password === "",
     });
   };
 
@@ -66,12 +73,12 @@ class Login extends React.Component {
                 <input
                   className="form-control input-login"
                   onChange={(event) =>
-                    this.setState({ username: event.target.value })
+                    this.setState({ username: event.target.value, currentUser: event.target.value})
                   }
                 ></input>
               </div>
               {
-                this.state.showUserError ? <div
+                this.state.showPasswordError ? <div
                 class="alert alert-danger d-flex align-items-center"
                 role="alert"
               >

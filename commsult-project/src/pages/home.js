@@ -68,9 +68,6 @@ class Home extends React.Component {
                   this.setState({ search: event.target.value })
                 }
               />
-              <button className="btn btn-outline-success" onClick={this.handleSearch} >
-                Search
-              </button>
               <button className="btn btn-danger ms-2" onClick={this.onHome}>
                 Logout
               </button>
@@ -156,11 +153,7 @@ class Home extends React.Component {
           </button>
       
         <div>
-          {this.props.users.map(element => {
-            return(
-              <h3 className="hello">Welcome, {element.name}</h3>
-            )
-          })}
+        <h3 className="hello">Welcome, {this.props.currentUser.name}</h3>
         </div>
         <br/><br/>
           <div className="container isinya">

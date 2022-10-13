@@ -12,13 +12,23 @@ class Register extends React.Component {
       email: "",
       username: "",
       password: "",
+      showUserError: false,
+      showPasswordError: false,
+      showNameError: false,
+      showEmailError: false,
       errorMessage: "",
     };
   }
 
   createUser = () => {
     if (this.state.name === "" || this.state.email === "" || this.state.username === "" || this.state.password === "") {
-        this.setState({errorMessage: "please complete all data"})
+        this.setState({
+          errorMessage: "please complete all data",
+          showUserError: this.state.username === "",
+          showPasswordError: this.state.password === "",
+          showEmailError: this.state.email === "",
+          showNameError: this.state.name === ""
+        })
         return
     }
     else {
@@ -45,6 +55,14 @@ class Register extends React.Component {
             <div className="box ">
               <img src={"/logo.png"} alt="logo" className="logo-web" />
               <h1 className="judul-register-form">Register Form</h1>
+              {
+                this.state.showNameError ? <div
+                className="container alert alert-danger d-flex align-items-center"
+                role="alert" 
+              >
+                <div>{this.state.errorMessage}</div>
+              </div> : ""
+              }
               <div
                 className="mini-box"
                 style={{
@@ -60,6 +78,14 @@ class Register extends React.Component {
                   }
                 ></input>
               </div>
+              {
+                this.state.showEmailError ? <div
+                className="container alert alert-danger d-flex align-items-center"
+                role="alert" 
+              >
+                <div>{this.state.errorMessage}</div>
+              </div> : ""
+              }
               <div
                 className="mini-box"
                 style={{
@@ -75,6 +101,14 @@ class Register extends React.Component {
                   }
                 ></input>
               </div>
+              {
+                this.state.showUserError ? <div
+                className="container alert alert-danger d-flex align-items-center"
+                role="alert" 
+              >
+                <div>{this.state.errorMessage}</div>
+              </div> : ""
+              }
               <div
                 className="mini-box"
                 style={{
@@ -90,6 +124,14 @@ class Register extends React.Component {
                   }
                 ></input>
               </div>
+              {
+                this.state.showPasswordError ? <div
+                className="container alert alert-danger d-flex align-items-center"
+                role="alert" 
+              >
+                <div>{this.state.errorMessage}</div>
+              </div> : ""
+              }
               <div
                 className="mini-box"
                 style={{
