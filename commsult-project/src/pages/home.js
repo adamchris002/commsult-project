@@ -29,10 +29,10 @@ class Home extends React.Component {
     });
   }
 
-    addToCart = item => (e) => {
-      e.preventDefault(e);
-      this.props.addCart(item)
-    }
+  addToCart = (item) => (e) => {
+    e.preventDefault(e);
+    this.props.addCart(item);
+  };
 
   render() {
     return (
@@ -44,17 +44,24 @@ class Home extends React.Component {
               alt="ini logo dari website"
               className="logo-home"
             />
-            <a className="navbar-brand ms-3 tombol-menu" href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    this.props.changePage("home");
-                  }}>
+            <a
+              className="navbar-brand ms-3 tombol-menu"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.changePage("home");
+              }}
+            >
               Home
             </a>
-            <a className="navbar-brand ms-3 tombol-menu" href="/" onClick={(e) => {
-                    e.preventDefault();
-                    this.props.changePage("cart");
-                  }}>
+            <a
+              className="navbar-brand ms-3 tombol-menu"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.changePage("cart");
+              }}
+            >
               Cart
             </a>
           </div>
@@ -114,7 +121,11 @@ class Home extends React.Component {
               </div>
             </div>
             <div className="carousel-item">
-              <img src={"halloween.jpg"} className="d-block w-100 carousel-img" alt="..." />
+              <img
+                src={"halloween.jpg"}
+                className="d-block w-100 carousel-img"
+                alt="..."
+              />
               <div className="carousel-caption d-none d-md-block">
                 <h5>Halloween Month Discount</h5>
                 <p>
@@ -123,12 +134,14 @@ class Home extends React.Component {
               </div>
             </div>
             <div className="carousel-item">
-              <img src={"event.jpg"} className="d-block w-100 carousel-img" alt="..." />
+              <img
+                src={"event.jpg"}
+                className="d-block w-100 carousel-img"
+                alt="..."
+              />
               <div className="carousel-caption d-none d-md-block">
                 <h5>Limited Time Discount</h5>
-                <p>
-                  Limited time discount for this month. Get it now!
-                </p>
+                <p>Limited time discount for this month. Get it now!</p>
               </div>
             </div>
           </div>
@@ -139,7 +152,10 @@ class Home extends React.Component {
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
           >
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Previous</span>
           </button>
           <button
@@ -148,26 +164,34 @@ class Home extends React.Component {
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="next"
           >
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Next</span>
           </button>
-      
-        <div>
-        <h3 className="hello">Welcome, {this.props.currentUser.name}</h3>
         </div>
-        <br/><br/>
-          <div className="container isinya">
-          <hr/>
-            <h4 className="for-you">For You</h4>
-            <br/><br/>
-            <div className="row">
-              {this.state.items.filter(element => {
+
+        <div>
+          <h3 className="hello">Welcome, {this.props.currentUser.name}</h3>
+        </div>
+        <br />
+        <br />
+        <div className="container isinya">
+          <hr />
+          <h4 className="for-you">For You</h4>
+          <br />
+          <br />
+          <div className="row">
+            {this.state.items
+              .filter((element) => {
                 if (this.state.search === "") {
-                  return true
-                }else {
-                  return element.name.includes(this.state.search)
+                  return true;
+                } else {
+                  return element.name.includes(this.state.search);
                 }
-              }).map((element) => {
+              })
+              .map((element) => {
                 return (
                   <>
                     <div className="col-6 col-md-3">
@@ -183,7 +207,11 @@ class Home extends React.Component {
                             {element.detail}
                           </p>
                           <span className="ini-span">
-                            <a href="/" className="btn btn-primary add-cart"onClick={this.addToCart(element)}>
+                            <a
+                              href="/"
+                              className="btn btn-primary add-cart"
+                              onClick={this.addToCart(element)}
+                            >
                               Add to Cart
                             </a>
                             <p className="harga">Rp. {element.price}</p>
@@ -194,7 +222,6 @@ class Home extends React.Component {
                   </>
                 );
               })}
-            </div>
           </div>
         </div>
       </>

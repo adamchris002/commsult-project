@@ -54,14 +54,16 @@ class Login extends React.Component {
             <div className="box ">
               <img src={"/logo.png"} alt="logo" className="logo-web" />
               <h1 className="judul-login-form">Login Form</h1>
-              {
-                this.state.showUserError ? <div
-                class="alert alert-danger d-flex align-items-center"
-                role="alert" 
-              >
-                <div>{this.state.errorMessage}</div>
-              </div> : ""
-              }
+              {this.state.showUserError ? (
+                <div
+                  class="alert alert-danger d-flex align-items-center"
+                  role="alert"
+                >
+                  <div>{this.state.errorMessage}</div>
+                </div>
+              ) : (
+                ""
+              )}
               <div
                 className="mini-box"
                 style={{
@@ -73,18 +75,23 @@ class Login extends React.Component {
                 <input
                   className="form-control input-login"
                   onChange={(event) =>
-                    this.setState({ username: event.target.value, currentUser: event.target.value})
+                    this.setState({
+                      username: event.target.value,
+                      currentUser: event.target.value,
+                    })
                   }
                 ></input>
               </div>
-              {
-                this.state.showPasswordError ? <div
-                class="alert alert-danger d-flex align-items-center"
-                role="alert"
-              >
-                <div>{this.state.errorMessage}</div>
-              </div> : ""
-              }
+              {this.state.showPasswordError ? (
+                <div
+                  class="alert alert-danger d-flex align-items-center"
+                  role="alert"
+                >
+                  <div>{this.state.errorMessage}</div>
+                </div>
+              ) : (
+                ""
+              )}
               <div
                 className="mini-box"
                 style={{
