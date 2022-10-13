@@ -163,7 +163,7 @@ class Home extends React.Component {
                 if (this.state.search === "") {
                   return true
                 }else {
-                  return element.name = element.name.includes(this.state.search)
+                  return element.name.includes(this.state.search)
                 }
               }).map((element) => {
                 return (
