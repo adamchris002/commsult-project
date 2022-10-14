@@ -159,7 +159,10 @@ class Register extends React.Component {
                 ></input>
               </div>
               <div>
-                <a href="">Already have an account? click here to login</a>
+                <a href="/" onClick={(e) => {
+                    e.preventDefault();
+                    this.props.changePage("login");
+                  }}>Already have an account? click here to login</a>
                 <br />
                 <button
                   className="btn btn-primary button-register"

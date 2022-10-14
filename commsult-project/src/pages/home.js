@@ -185,11 +185,7 @@ class Home extends React.Component {
           <div className="row">
             {this.state.items
               .filter((element) => {
-                if (this.state.search === "") {
-                  return true;
-                } else {
                   return element.name.includes(this.state.search);
-                }
               })
               .map((element) => {
                 return (
